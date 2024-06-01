@@ -17,9 +17,9 @@ jobs:
         submodules: recursive
         
     - name: mkdir
-      run: mkdir -p build ; cd build
+      run: mkdir -p build
       
     - name: make
-      run: cmake .. && cmake --build .
+      run: cd build && cmake .. && cmake --build .
 
     
