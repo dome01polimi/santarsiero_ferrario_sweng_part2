@@ -1,9 +1,7 @@
 #include "matrix_multiplication.h"
-#include "utils.hpp"
 #include <iostream>
 #include <vector>
 #include <gtest/gtest.h>
-#include <random>
 
 using namespace std;
 
