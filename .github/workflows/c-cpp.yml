@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-22.04
 
     steps:
-    - name: Install mpi
+    - name: install mpi
       run: sudo apt-get install -y mpich
       
     - name: checkout repository
@@ -22,7 +22,7 @@ jobs:
     - name: make
       run: mkdir -p build && cd build && cmake .. && cmake --build .
 
-    - name: make
+    - name: test
       run: cd build && ./test_multiplication 
 
     
