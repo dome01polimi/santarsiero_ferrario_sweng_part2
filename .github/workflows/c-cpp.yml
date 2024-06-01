@@ -1,0 +1,25 @@
+name: C/C++ CI
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-22.04
+
+    steps:
+    - name: checkout repository
+      uses: actions/checkout@v4
+      with:
+        ref: main
+        submodules: recursive
+        
+    - name: mkdir
+      run: mkdir -p build ; cd build
+      
+    - name: make
+      run: cmake .. && cmake --build .
+
+    
