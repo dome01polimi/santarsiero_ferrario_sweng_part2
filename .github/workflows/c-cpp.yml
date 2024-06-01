@@ -23,6 +23,6 @@ jobs:
       run: mkdir -p build && cd build && cmake .. && cmake --build .
 
     - name: make
-      run: che build && ./test_multiplication 
+      run: cd build && ./test_multiplication 
 
     
