@@ -19,10 +19,10 @@ jobs:
         ref: main
         submodules: recursive
         
-    - name: mkdir
-      run: mkdir -p build
-      
     - name: make
-      run: cd build && cmake .. && cmake --build .
+      run: mkdir -p build && cd build && cmake .. && cmake --build .
+
+    - name: make
+      run: che build && ./test_multiplication 
 
     
