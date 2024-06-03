@@ -10,20 +10,14 @@ jobs:
 
     steps:
     - name: install mpi
-      run: sudo apt get update && sudo apt-get install -y mpich
-      
+      run: sudo apt get update && sudo apt-get install -y mpich     
+
     - name: checkout repository
       uses: actions/checkout@v4
       with:
         ref: main
         submodules: recursive
         
-    - name: mkdir
-      run: mkdir -p build
-      
-    - name: make
-      run: cd build && cmake .. && cmake --build .
-    
     - name: install Go
       run: export VERSION=1.11 OS=linux ARCH=amd64 && /
         wget https://dl.google.com/go/go$VERSION.$OS-$ARCH.tar.gz && /
@@ -41,5 +35,10 @@ jobs:
           singularity-version: 3.8.3
           run : singluarity --version
     
+    - name: make    
+      run: mkdir -p build && cd build && cmake .. && cmake --build .
+
+    - name: test
+      run: cd build && ./test_multiplication 
 
     
