@@ -10,24 +10,33 @@ jobs:
 
     steps:
     - name: install mpi
-      run: sudo apt get update && sudo apt-get install -y mpich     
+      run: sudo apt-get update && sudo apt-get install -y mpich
 
     - name: checkout repository
       uses: actions/checkout@v4
       with:
         ref: main
         submodules: recursive
+
+    - name: install dependencies for Singularity 
+      run: |
+        sudo apt-get install -y \
+           build-essential \
+           libseccomp-dev \
+           pkg-config \
+           squashfs-tools \
+           cryptsetup \
+           curl wget git
         
     - name: install Go
-      run: export VERSION=1.11 OS=linux ARCH=amd64 && /
-        wget https://dl.google.com/go/go$VERSION.$OS-$ARCH.tar.gz && /
-        sudo tar -C /usr/local -xzvf go$VERSION.$OS-$ARCH.tar.gz && /
-        rm go$VERSION.$OS-$ARCH.tar.gz
+      run: |
+        export GOVERSION=1.17.3 OS=linux ARCH=amd64
+        wget -O /tmp/go${GOVERSION}.${OS}-${ARCH}.tar.gz \
+          https://dl.google.com/go/go${GOVERSION}.${OS}-${ARCH}.tar.gz
+        sudo tar -C /usr/local -xzf /tmp/go${GOVERSION}.${OS}-${ARCH}.tar.gz
 
     - name : setupe Env for GO
-      run: echo 'export GOPATH=${HOME}/go' >> ~/.bashrc && /
-        echo 'export PATH=/usr/local/go/bin:${PATH}:${GOPATH}/bin' >> ~/.bashrc && /
-        source ~/.bashrc
+      run: echo 'export PATH=$PATH:/usr/local/go/bin' >> ~/.bashrc && source ~/.bashrc
   
     - name : install Singularity
       uses: eWaterCycle/setup-singularity@v7
