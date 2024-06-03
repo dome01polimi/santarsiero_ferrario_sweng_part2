@@ -1,0 +1,50 @@
+Bootstrap: docker
+From: ubuntu:22.04
+
+%post
+
+    # Set noninteractive mode for apt-get
+    export DEBIAN_FRONTEND=noninteractive
+
+    # Update package list and install ntp for time synchronization
+    apt-get update && apt-get install -y ntp
+
+    # Start ntp service and force time synchronization
+    service ntp start
+    ntpd -gq
+    service ntp stop
+
+    # Update package list again and install required packages
+    apt-get update && apt-get install -y \
+        build-essential \
+        cmake \
+        git \
+        libgtest-dev \
+        mpich
+
+    # Clone the repo inside the container
+    git clone --recursive https://github.com/dome01polimi/santarsiero_ferrario_sweng_part2.git /usr
+
+    # Build and install Google Test
+    cd /usr/santarsiero_ferrario_sweng_part2/googletest
+    mkdir build
+    cd build
+    cmake ..
+    make
+    make install
+
+    # Build the matrix multiplication project
+    cd /usr/santarsiero_ferrario_sweng_part2/
+    rm -rf build
+    chmod +x build.sh
+    ./build.sh
+
+%test
+    cd /usr/santarsiero_ferrario_sweng_part2/
+    chmod +x run_test.sh
+    ./run_test.sh
+
+%runscript
+    cd /usr/santarsiero_ferrario_sweng_part2/
+    # Define the default command to run when the container starts
+    mpirun -np 2 build/main

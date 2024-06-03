@@ -1,0 +1,32 @@
+[==========] Running 4 tests from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 4 tests from MatrixMultiplicationTest
+[ RUN      ] MatrixMultiplicationTest.TestMultiplyMatrices
+[       OK ] MatrixMultiplicationTest.TestMultiplyMatrices (0 ms)
+[ RUN      ] MatrixMultiplicationTest.TestMultiplyMatrices_CostantMatrix
+[==========] Running 4 tests from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 4 tests from MatrixMultiplicationTest
+[ RUN      ] MatrixMultiplicationTest.TestMultiplyMatrices
+[       OK ] MatrixMultiplicationTest.TestMultiplyMatrices (0 ms)
+[ RUN      ] MatrixMultiplicationTest.TestMultiplyMatrices_CostantMatrix
+[       OK ] MatrixMultiplicationTest.TestMultiplyMatrices_CostantMatrix (0 ms)
+[ RUN      ] MatrixMultiplicationTest.TestMultiplyMatrices_IdentityMatrix
+[       OK ] MatrixMultiplicationTest.TestMultiplyMatrices_CostantMatrix (0 ms)
+[ RUN      ] MatrixMultiplicationTest.TestMultiplyMatrices_IdentityMatrix
+[       OK ] MatrixMultiplicationTest.TestMultiplyMatrices_IdentityMatrix (0 ms)
+[ RUN      ] MatrixMultiplicationTest.TestMultiplyMatrices_withoutError
+[       OK ] MatrixMultiplicationTest.TestMultiplyMatrices_withoutError (0 ms)
+[----------] 4 tests from MatrixMultiplicationTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 4 tests from 1 test suite ran. (0 ms total)
+[  PASSED  ] 4 tests.
+[       OK ] MatrixMultiplicationTest.TestMultiplyMatrices_IdentityMatrix (0 ms)
+[ RUN      ] MatrixMultiplicationTest.TestMultiplyMatrices_withoutError
+[       OK ] MatrixMultiplicationTest.TestMultiplyMatrices_withoutError (0 ms)
+[----------] 4 tests from MatrixMultiplicationTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 4 tests from 1 test suite ran. (0 ms total)
+[  PASSED  ] 4 tests.
