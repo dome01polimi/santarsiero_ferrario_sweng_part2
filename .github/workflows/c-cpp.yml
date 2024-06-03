@@ -42,7 +42,7 @@ jobs:
       uses: eWaterCycle/setup-singularity@v7
       with:
           singularity-version: 3.8.3
-          run : singluarity --version
+          run : singularity --version
     
     - name: make    
       run: mkdir -p build && cd build && cmake .. && cmake --build .
