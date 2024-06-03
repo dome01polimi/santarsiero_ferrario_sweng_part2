@@ -17,16 +17,16 @@
 [       OK ] MatrixMultiplicationTest.TestMultiplyMatrices_IdentityMatrix (0 ms)
 [ RUN      ] MatrixMultiplicationTest.TestMultiplyMatrices_withoutError
 [       OK ] MatrixMultiplicationTest.TestMultiplyMatrices_withoutError (0 ms)
-[----------] 4 tests from MatrixMultiplicationTest (0 ms total)
+[----------] 4 tests from MatrixMultiplicationTest (1 ms total)
 
-[----------] Global test environment tear-down
-[==========] 4 tests from 1 test suite ran. (0 ms total)
-[  PASSED  ] 4 tests.
 [       OK ] MatrixMultiplicationTest.TestMultiplyMatrices_IdentityMatrix (0 ms)
 [ RUN      ] MatrixMultiplicationTest.TestMultiplyMatrices_withoutError
+[----------] Global test environment tear-down
+[==========] 4 tests from 1 test suite ran. (1 ms total)
+[  PASSED  ] 4 tests.
 [       OK ] MatrixMultiplicationTest.TestMultiplyMatrices_withoutError (0 ms)
-[----------] 4 tests from MatrixMultiplicationTest (0 ms total)
+[----------] 4 tests from MatrixMultiplicationTest (1 ms total)
 
 [----------] Global test environment tear-down
-[==========] 4 tests from 1 test suite ran. (0 ms total)
+[==========] 4 tests from 1 test suite ran. (1 ms total)
 [  PASSED  ] 4 tests.

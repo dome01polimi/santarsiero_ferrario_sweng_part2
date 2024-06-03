@@ -5,6 +5,7 @@ on:
     branches: [ "main" ]
 
 jobs:
+
   build:
     name : Build Application 
     runs-on: ubuntu-22.04
@@ -12,27 +13,22 @@ jobs:
     steps:
     - name: install mpi
       run: sudo apt-get update && sudo apt-get install -y mpich
-
+      
     - name: checkout repository
       uses: actions/checkout@v4
       with:
-        ref: main
         submodules: recursive
-
+        
     - name: make    
       run: mkdir -p build && cd build && cmake .. && cmake --build .
 
     - name: test
-      run: cd build && ./test_multiplication 
-
-  install-Singularity:
-    name : Install Singularity
-    runs-on: ubuntu-22.04
-    steps:
+      run: cd build && ./test_multiplication  
 
     - name: install dependencies for Singularity 
       run: |
         sudo apt-get install -y \
+          uuid-dev \
           build-essential \
           libseccomp-dev \
           pkg-config \
@@ -50,11 +46,20 @@ jobs:
     - name : setupe Env for GO
       run: echo 'export PATH=$PATH:/usr/local/go/bin' >> ~/.bashrc && source ~/.bashrc
       
-      
-    - name : install and compile Singularity
-      uses: eWaterCycle/setup-singularity@v7
-      with:
-          singularity-version: 3.8.3
+    - name: Install Singularity
+      run: |
+        export VERSION=3.8.7 && # adjust this as necessary \
+        wget https://github.com/hpcng/singularity/releases/download/v${VERSION}/singularity-${VERSION}.tar.gz \
+        && sudo tar -xzf singularity-${VERSION}.tar.gz \
+        && cd singularity-${VERSION} \
+        && sudo ./mconfig \
+        && sudo make -C builddir \
+        && sudo make -C builddir install
  
     - name : verifyVersion
       run: singularity --version
+
+    - name: Build Singularity container
+      run: |
+        sudo singularity build my_project.sif Singularity.def
+      
