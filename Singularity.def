@@ -33,7 +33,7 @@ From: ubuntu:22.04
 
 %test
     cd /usr/santarsiero_ferrario_sweng_part2/build
-    ./test_multiplication
+    mpirun -np 2 ./test_multiplication
 
 %runscript
     cd /usr/santarsiero_ferrario_sweng_part2/
