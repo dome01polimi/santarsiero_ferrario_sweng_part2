@@ -6,12 +6,11 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-22.04
 
     steps:
-    - name: Install mpi
-      run: sudo apt-get install -y mpich
+    - name: install mpi
+      run: sudo apt get update && sudo apt-get install -y mpich
       
     - name: checkout repository
       uses: actions/checkout@v4
@@ -24,5 +23,23 @@ jobs:
       
     - name: make
       run: cd build && cmake .. && cmake --build .
+    
+    - name: install Go
+      run: export VERSION=1.11 OS=linux ARCH=amd64 && /
+        wget https://dl.google.com/go/go$VERSION.$OS-$ARCH.tar.gz && /
+        sudo tar -C /usr/local -xzvf go$VERSION.$OS-$ARCH.tar.gz && /
+        rm go$VERSION.$OS-$ARCH.tar.gz
+
+    - name : setupe Env for GO
+      run: echo 'export GOPATH=${HOME}/go' >> ~/.bashrc && /
+        echo 'export PATH=/usr/local/go/bin:${PATH}:${GOPATH}/bin' >> ~/.bashrc && /
+        source ~/.bashrc
+  
+    - name : install Singularity
+      uses: eWaterCycle/setup-singularity@v7
+      with:
+          singularity-version: 3.8.3
+          run : singluarity --version
+    
 
     
