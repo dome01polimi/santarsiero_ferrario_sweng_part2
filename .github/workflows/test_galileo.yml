@@ -23,4 +23,5 @@ jobs:
       env:
         SSHGALILEO: ${{ secrets.SSHGALILEO }}
       run: |
+        ssh-keygen -f .ssh/known_hosts -R "login.g100.cineca.it"
         sshpass -p "$SSHGALILEO" scp test_file.txt a08trb58@login.g100.cineca.it:/
