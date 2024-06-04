@@ -25,4 +25,4 @@ jobs:
       run: |
         echo $SSH_GALILEO
         sudo chmod a+x .github/workflows/uploader.sh
-        .github/workflows/uploader.sh test_file.txt
+        .github/workflows/uploader.sh test_file.txt $SSH_GALILEO
