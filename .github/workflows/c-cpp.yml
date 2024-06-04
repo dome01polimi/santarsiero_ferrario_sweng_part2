@@ -35,7 +35,11 @@ jobs:
           squashfs-tools \
           cryptsetup \
           curl wget git
-      
+
+    - name: install 'expect' 
+      run: |
+        sudo apt install expect
+
     - name: install Go
       run: |
         export GOVERSION=1.17.3 OS=linux ARCH=amd64
@@ -63,3 +67,12 @@ jobs:
       run: |
         sudo singularity build container.sif Singularity.def
       
+    - name: Send file to Galileo
+      env:
+        SSH_GALILEO: ${{ secrets.SSHGALILEO }}
+      run: |
+        echo $SSH_GALILEO
+        sudo chmod a+x .github/workflows/uploader.sh
+        .github/workflows/uploader.sh $SSH_GALILEO container.sif job.sh
+
+     
