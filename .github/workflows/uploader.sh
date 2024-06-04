@@ -1,9 +1,9 @@
 #!/usr/bin/expect -f
 
 # Get the password from the second argument
-set pass [lindex $argv 1]
+set pass [lindex $argv 0]
 
-set filename [lindex $argv 2]
+set filename [lindex $argv 1]
 
 
 # Set timeout to unlimited
