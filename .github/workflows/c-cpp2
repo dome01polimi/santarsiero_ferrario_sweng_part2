@@ -1,0 +1,34 @@
+name: C/C++ CI
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+
+  build:
+    name : Build Application 
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: checkout repository
+      uses: actions/checkout@v4
+      with:
+        submodules: recursive
+        
+    - name: install 'expect' 
+      run: |
+        sudo apt install expect
+
+    - name: Group files to Send
+      run : mkdir to_send && mv job.sh to_send/ && mv container.sif to_send/
+
+    - name: Send file to Galileo
+      env:
+        SSH_GALILEO: ${{ secrets.SSHGALILEO }}
+      run: |
+        sudo chmod a+x .github/workflows/uploader.sh
+        .github/workflows/uploader.sh $SSH_GALILEO to_send
+
+
+     
