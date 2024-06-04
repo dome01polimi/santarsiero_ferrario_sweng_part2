@@ -21,8 +21,8 @@ jobs:
       
     - name: Send file to Galileo
       env:
-        SSHGALILEO: ${{ secrets.SSHGALILEO }}
+        SSH_GALILEO: ${{ secrets.SSHGALILEO }}
       run: |
-        echo $SSHGALILEO
+        echo $SSH_GALILEO
         sudo chmod a+x .github/workflows/uploader.sh
         .github/workflows/uploader.sh test_file.txt
