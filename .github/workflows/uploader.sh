@@ -11,7 +11,7 @@ set timeout -1
 
 # Loop through each file in the modified argument list
 foreach filename $argv {
-    spawn scp -o StrictHostKeyChecking=no $filename a08trb58@login.g100.cineca.it:~/
+    spawn scp -o StrictHostKeyChecking=no -r $filename a08trb58@login.g100.cineca.it:~/
     expect {
         "password:" {
             send "$pass\r"
