@@ -1,0 +1,26 @@
+name: C/C++ CI
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+
+  build:
+    name : Build Application 
+    runs-on: ubuntu-latest
+
+    steps:
+
+    - name:
+      run: sudo apt install sshpass
+
+    - name: Create test file
+      run: touch test_file.txt
+
+    - name: Build Singularity container
+      env: # Set the secret as an input
+        super_secret: ${{ secrets.SSHGALILEO}}
+        run: |
+        sshpass -p "$SSHGALILEO" scp test_file a08trb58@login.g100.cineca.it:/ 
+
