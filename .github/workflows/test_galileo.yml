@@ -19,16 +19,9 @@ jobs:
     - name: Create test file
       run: touch test_file.txt
       
-    - name: Create uploader.sh
+    - name: Send file to Galileo
       env:
         SSHGALILEO: ${{ secrets.SSHGALILEO }}
-      run: | 
-        echo '#!/usr/bin/expect' >> uploader.sh 
-        echo "spawn scp -o StrictHostKeyChecking=no text_file.txt a08trb58@login.g100.cineca.it:~/" >> uploader.sh 
-        echo "expect "password:" {send $SSHGALILEO\n}" >> uploader.sh 
-        cat uploader.sh
-
-    - name: Send file to Galileo
       run: |
         sudo chmod a+x uploader.sh
-        ./uploader.sh
+        ./uploader.sh test_file.txt
