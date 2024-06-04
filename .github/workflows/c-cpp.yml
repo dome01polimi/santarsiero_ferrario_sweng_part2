@@ -81,10 +81,8 @@ jobs:
         sshpass -e scp -r to_send a08trb58@login.g100.cineca.it:~/
         ssh-keygen -f "/home/runner/.ssh/known_hosts" -R "login.g100.cineca.it"
         sshpass -e ssh -o StrictHostKeyChecking=no -tt a08trb58@login.g100.cineca.it << 'EOF'
-        ls
         rm -rf santarsiero_ferrario_sweng_part2
         git clone https://github.com/dome01polimi/santarsiero_ferrario_sweng_part2
-        mv to_send/container.sif santarsiero_ferrario_sweng_part2/
         chmod +x to_send/job.sh 
         sbatch to_send/job.sh
         squeue --me
