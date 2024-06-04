@@ -4,7 +4,7 @@
 #SBATCH --ntasks=2                                                  # number of tasks
 #SBATCH --ntasks-per-node=2                                         # number of tasks per node
 #SBATCH --time=01:00:00                                             # time (HH:MM:SS)
-#SBATCH --partition=g100_usr_prod                                   # partition
+#SBATCH --partition=g100_all_serial                                 # partition
 #SBATCH --account=tra23_bbs                                         # project account
 
 home_path="/g100/home/usertrain/a08trb58/"
