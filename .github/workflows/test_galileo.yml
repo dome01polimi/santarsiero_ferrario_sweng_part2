@@ -22,4 +22,5 @@ jobs:
       run: |
         echo $SSH_GALILEO
         sudo chmod a+x .github/workflows/uploader.sh
-        .github/workflows/uploader.sh job.sh Singularity.def $SSH_GALILEO
+        .github/workflows/uploader.sh job.sh $SSH_GALILEO
+        .github/workflows/uploader.sh Singularity.def $SSH_GALILEO
