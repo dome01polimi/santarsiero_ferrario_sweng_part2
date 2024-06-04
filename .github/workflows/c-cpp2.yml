@@ -21,7 +21,7 @@ jobs:
         sudo apt install expect
 
     - name: Group files to Send
-      run : mkdir to_send && mv job.sh to_send/ 
+      run : mkdir to_send && mv job.sh to_send/  && mv container.sif to_send/
 
     - name: Send file to Galileo
       env:
