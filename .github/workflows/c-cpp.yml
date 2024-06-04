@@ -23,7 +23,7 @@ jobs:
       run: mkdir -p build && cd build && cmake .. && cmake --build .
 
     - name: test
-      run: cd build && ./test_multiplication  
+      run: cd build && mpirun -np 2 ./test_multiplication  
 
     - name: install dependencies for Singularity 
       run: |
