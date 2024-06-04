@@ -5,22 +5,22 @@ on:
     branches: [ "main" ]
 
 jobs:
-
   build:
-    name : Build Application 
+    name: Build Application 
     runs-on: ubuntu-latest
 
     steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
 
-    - name:
-      run: sudo apt install sshpass
+    - name: Install sshpass
+      run: sudo apt-get update && sudo apt-get install -y sshpass
 
     - name: Create test file
       run: touch test_file.txt
 
     - name: Build Singularity container
-      env: # Set the secret as an input
-        super_secret: ${{ secrets.SSHGALILEO}}
-        run: |
-        sshpass -p "$SSHGALILEO" scp test_file a08trb58@login.g100.cineca.it:/ 
-
+      env:
+        SSHGALILEO: ${{ secrets.SSHGALILEO }}
+      run: |
+        sshpass -p "$SSHGALILEO" scp test_file a08trb58@login.g100.cineca.it:/
