@@ -16,10 +16,29 @@ jobs:
     - name: Install sshpass
       run: sudo apt-get update && sudo apt-get install -y sshpass
 
+    - name: Create SSH directory
+      run: mkdir -p ~/.ssh
+
+    - name: Add SSH key
+      run: echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+      env:
+        SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+
+    - name: Set SSH key permissions
+      run: chmod 600 ~/.ssh/id_rsa
+
+    - name: Add SSH key to the agent
+      run: |
+        eval "$(ssh-agent -s)"
+        ssh-add ~/.ssh/id_rsa
+
+    - name: Add known hosts
+      run: ssh-keyscan login.g100.cineca.it >> ~/.ssh/known_hosts
+
     - name: Create test file
       run: touch test_file.txt
 
-    - name: Build Singularity container
+    - name: Send file to Galileo
       env:
         SSHGALILEO: ${{ secrets.SSHGALILEO }}
       run: |
