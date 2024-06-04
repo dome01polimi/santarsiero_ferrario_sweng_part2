@@ -20,9 +20,6 @@ jobs:
       run: |
         sudo apt install expect
 
-    - name: Create test file
-      run : touch placeholder
-
     - name: Send file to Galileo
       env:
         SSH_GALILEO: ${{ secrets.SSHGALILEO }}
