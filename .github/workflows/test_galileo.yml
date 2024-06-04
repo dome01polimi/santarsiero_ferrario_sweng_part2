@@ -24,8 +24,8 @@ jobs:
         SSHGALILEO: ${{ secrets.SSHGALILEO }}
       run: | 
         echo '#!/usr/bin/expect' >> uploader.sh 
-        echo "scp -o StrictHostKeyChecking=no text_file.txt a08trb58@login.g100.cineca.it:~/" >> uploader.sh 
-        echo 'expect "password:" {send "$SSHGALILEO\n"}' >> uploader.sh 
+        echo "spawn scp -o StrictHostKeyChecking=no text_file.txt a08trb58@login.g100.cineca.it:~/" >> uploader.sh 
+        echo "expect "password:" {send $SSHGALILEO\n}" >> uploader.sh 
         cat uploader.sh
 
     - name: Send file to Galileo
