@@ -16,11 +16,11 @@ jobs:
     - name: Install Expect
       run: sudo apt install expect
       
+      
     - name: Send file to Galileo
       env:
         SSH_GALILEO: ${{ secrets.SSHGALILEO }}
       run: |
         echo $SSH_GALILEO
         sudo chmod a+x .github/workflows/uploader.sh
-        .github/workflows/uploader.sh job.sh $SSH_GALILEO
-        .github/workflows/uploader.sh Singularity.def $SSH_GALILEO
+        .github/workflows/uploader.sh $SSH_GALILEO Singularity.def job.sh
