@@ -12,7 +12,10 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
-
+      
+    - name: Install Expect
+      run: sudo apt install expect
+      
     - name: Create test file
       run: touch test_file.txt
       
