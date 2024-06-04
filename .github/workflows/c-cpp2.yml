@@ -32,7 +32,7 @@ jobs:
 
     - name: SSH to remote server
       env:
-        SSH_GALILEO: ${{ secrets.SSHGALILEO }}
+        SSHPASS: ${{ secrets.SSHGALILEO }}
       run: |
         mkdir ~/.ssh
         chmod 700 ~/.ssh
