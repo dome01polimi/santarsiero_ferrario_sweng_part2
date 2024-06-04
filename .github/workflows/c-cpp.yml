@@ -28,6 +28,7 @@ jobs:
         SSH_GALILEO: ${{ secrets.SSHGALILEO }}
       run: |
         sudo chmod a+x .github/workflows/uploader.sh
-        .github/workflows/uploader.sh $SSH_GALILEO ./to_send 
+        .github/workflows/uploader.sh $SSH_GALILEO to_send
+
 
      
