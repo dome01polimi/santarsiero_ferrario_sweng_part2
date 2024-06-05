@@ -35,11 +35,7 @@ jobs:
           squashfs-tools \
           cryptsetup \
           curl wget git
-
-    - name: install 'expect' 
-      run: |
-        sudo apt install expect
-
+          
     - name: install Go
       run: |
         export GOVERSION=1.17.3 OS=linux ARCH=amd64
