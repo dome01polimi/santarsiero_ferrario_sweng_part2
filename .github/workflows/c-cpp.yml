@@ -82,3 +82,5 @@ jobs:
         squeue --me
         exit      
         EOF
+
+        
