@@ -1,54 +1,35 @@
-# SE4HPCproject
+SE4HPCproject - Step 2 CI/CD Pipeline and automation
 
-## Step 2 -- From build to release and manual job execution 
+We automated the build, test and release process with a CI/CD pipeline, triggering Github actions on 'push' actions.
+Workflow file
 
-Focus now on the correct implementation of the matrix multiplication you
-find in <https://github.com/SimoneReale/SE4HPC_project_part2>. This is a
-parallel implementation that uses MPI and reads the matrices to be
-multiplied from two files, matrixA.txt and matrixB.txt. In these files
-the first row contains the matrix dimensions (number of rows and
-columns), while the other rows contain the matrix itself.
+The definition of the action workflow is defined in ./github/workflows/c-cpp.yml. Here is a brief explanation of the code. The job runs on the latest Ubuntu environment provided by GitHub.
 
-Your task is to perform the following steps:
+    Install MPI: The first step updates the package list and installs MPI to run the matrix multiplication library.
 
-**Preparation**: Use the template available here
-<https://github.com/SimoneReale/SE4HPC_project_part2> to create your own
-github repository. Add to this repository the tests you have created in
-Step1.
+    Checkout Repository: This step checks out the project's repository from GitHub, including any submodules.
 
-**Automating the build, test and release processes**: Create a CI/CD
-pipeline that, when someone pushes files in the repo, executes the
-building and testing process.
+    Build Application: It creates a build directory, runs CMake to generate build files, and compiles the project.
 
-**Containerizing the application**: Go through the following steps:
+    Run Tests: The built application is tested by running an MPI job with two processes using mpirun.
 
--   Define a Singularity container descriptor for the matrix
-    multiplication program and push it in your repo.
+    Install Dependencies for Singularity: Several dependencies required to install Singularity (a container platform) are installed.
 
--   Extend the created action to create a container image from your
-    description.
+    Install Go: The Go programming language is installed, which is necessary for building Singularity.
 
-**Executing on the cluster**: Go through the following steps:
+    Set Up Go Environment: The Go binary path is added to the environment variables.
 
--   Create a job.sh file to run your containerized application. Make
-    sure that the standard output and error are mapped to txt files.
+    Install Singularity: Singularity is downloaded, compiled, and installed.
 
--   Transfer on Galileo100 your job script and the container.
+    Verify Singularity Installation: This step checks the installed version of Singularity to ensure it was installed correctly.
 
--   Submit your job to the cluster and check whether it works correctly.
+    Build Singularity Container: A Singularity container is built using a definition file (Singularity.def).
 
--   Push on your github repository your job.sh file and the files
-    obtained from the execution of the matrix multiplication.
+    Prepare Files for Transfer to Galileo: The container file and a SLURM job script are moved into a directory (to_send) for the upcoming transfer to Galileo cluster.
 
-## Step 3 -- Automating a job submission with containerization 
+    SSH to Remote Server: Using sshpass for password-based SSH, the files are transferred to a remote server. The job script is executed on the remote server, and the output is printed. The server job queue status is also checked.
 
-Extend the action you have created at step 3 to automate completely the
-process from a push on the repository to the execution of the
-containerized software on SLURM. To do so, you will have to move your
-container from the runner to the cluster. You can either use the scp
-command or you can publish your image on the Singularity registry and
-then pull it from the cluster. Don't forget to handle your secrets
-properly! You do not want to leave passwords and authentication tokens
-visible to everybody, so you will use the [secrets
-mechanism](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions?tool=cli).
+This workflow streamlines the process of building, testing, and deploying the C/C++ application, while also leveraging Singularity containers for consistent and portable execution environments.
+On Galileo
 
+On Galileo, cluster management and job scheduling is handled by SLURM. We run the container image container.sif through a script named job.sh, both transfered previously during the workflow. job.sh contains the command for singularity to run the image and where to pipe the output, in addition to other setup variables.
