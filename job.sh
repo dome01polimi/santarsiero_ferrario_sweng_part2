@@ -12,4 +12,4 @@
 
 export HOME_PATH ="/g100/home/usertrain/a08trb58/"
 mkdir -p $HOME_PATH"/out"
-singularity run -C $HOME_PATH"to_send/container.sif" 2> program.stderr
+singularity run -C $HOME_PATH"to_send/container.sif" 
