@@ -1,4 +1,4 @@
-/bin/bash
+#!/bin/bash
 #SBATCH --job-name=run-Singularity-container                        # Job name
 #SBATCH --cpus-per-task=1                                           # Set the number of CORES per task
 #SBATCH --nodes=1                                                   # number of nodes
