@@ -16,4 +16,4 @@ module load singularity
 
 mkdir -p $HOME_PATH/out
 
-singularity run $HOME_PATH"to_send/container.sif"
+singularity run -C $HOME_PATH"to_send/container.sif"
