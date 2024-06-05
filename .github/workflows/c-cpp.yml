@@ -78,7 +78,7 @@ jobs:
         ssh-keygen -f "/home/runner/.ssh/known_hosts" -R "login.g100.cineca.it"
         sshpass -e ssh -o StrictHostKeyChecking=no -tt a08trb58@login.g100.cineca.it << 'EOF'
         chmod +x to_send/job.sh 
-        sbatch to_send/job.sh
+        sbatch to_send/job.sh && sleep 30 && cat out/*.out out/*.err
         squeue --me
         exit      
         EOF
