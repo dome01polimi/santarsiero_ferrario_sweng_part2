@@ -1,4 +1,4 @@
-#!/bin/bash
+#!sinu/bin/bash
 #SBATCH --job-name=run-Singularity-container                        # Job name
 #SBATCH --cpus-per-task=1                                           # Set the number of CORES per task
 #SBATCH --nodes=1                                                   # number of nodes
@@ -10,10 +10,10 @@
 #SBATCH -o ../out/%x-%j.out                                         # File to which STDOUT will be written
 #SBATCH -e ../out/%x-%j.err                                         # File to which STDERROR will be written
 
-home_path="/g100/home/usertrain/a08trb58/"
+export HOME_PATH ="/g100/home/usertrain/a08trb58/"
 
 module load singularity
 
-mkdir -p $home_path/out
+mkdir -p $HOME_PATH/out
 
-singularity run -C $home_path"to_send/container.sif"
+singularity run -C $HOME_PATH"to_send/container.sif"
