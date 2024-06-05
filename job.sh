@@ -10,6 +10,6 @@
 #SBATCH -o out/%x-%j.out                                            # File to which STDOUT will be written
 #SBATCH -e out/%x-%j.err                                            # File to which STDERR will be written
 
-export HOME_PATH ="/g100/home/usertrain/a08trb58/"
-mkdir -p $HOME_PATH"/out"
-singularity run -C $HOME_PATH"to_send/container.sif" 
+HOME_PATH ="/g100/home/usertrain/a08trb58/"
+
+singularity run -C $HOME_PATH"to_send/container.sif"
