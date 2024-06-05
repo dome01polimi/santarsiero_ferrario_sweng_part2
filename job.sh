@@ -5,11 +5,14 @@
 #SBATCH --ntasks-per-node=2                                         # number of tasks per node
 #SBATCH --time=01:00:00                                             # time (HH:MM:SS)
 #SBATCH --partition=g100_all_serial                                 # partition
-#SBATCH --account=tra24_sepolimi                                         # project account
+#SBATCH --account=tra24_sepolimi                                    # project account
+#SBATCH -o ../out/%x-%j.out # File to which STDOUT will be written
+#SBATCH -e ../out/%x-%j.err # File to which STDERR will be written
 
 home_path="/g100/home/usertrain/a08trb58/"
 
+module load singularity
+
 mkdir -p $home_path/out
 
-singularity test -C $home_path"to_send/container.sif" 2> ../out/test.stderr > ../out/test.stdout 
-singularity run -C $home_path"to_send/container.sif" 2> ../out/program.stderr > ../out/program.stdout
+singularity run -C $home_path"to_send/container.sif"
