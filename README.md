@@ -1,6 +1,6 @@
 # SE4HPCproject - Step 2 CI/CD Pipeline and automation
 
-We automated the build, test and release process with a CI/CD pipeline, triggering Github actions on 'push' actions.
+We automated the build, test and release process with a CI/CD pipeline, triggering Github actions on 'push' events.
 ## Workflow file
 The definition of the action workflow is defined in `./github/workflows/c-cpp.yml`. Here is a brief explanation of the code.
 The job runs on the latest Ubuntu environment provided by GitHub.
